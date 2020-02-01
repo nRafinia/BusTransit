@@ -1,0 +1,113 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29709.97
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interface", "Interface\Interface.csproj", "{F58FAAF6-CF45-4C0F-9955-3956ED1906A9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{C572C02F-4459-4DD3-9103-C1E447E03994}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "Core\Common\Common.csproj", "{546E6C5A-21B7-4FCA-8EDF-F5950565737E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Global", "Global\Global.csproj", "{4C23AFAD-B6C2-4810-8C07-69962D74B210}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Engines", "Engines", "{49DC1522-87F9-4342-86C3-F56E2B296D4B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{70E7A981-783C-4D3F-B2DA-7A5F389042B6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Operation", "Operation", "{A318BBC4-0768-496C-B02E-99AA73084AAC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Engine.Common", "Engines\Engine.Common\Engine.Common.csproj", "{28039454-9932-451C-BA87-00EEE3AB66CD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Template", "Engines\Template\Template.csproj", "{D978891A-DF49-41E7-A5C4-AD2196EA10D3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Accounting", "Accounting", "{18515F26-5D14-4381-85A9-C4285AFDCE76}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Engine.Accounting", "Engines\Operation\Accounting\Engine.Accounting\Engine.Accounting.csproj", "{42A57455-5F66-44F2-90A5-49194FAF2C0D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Engine.Accounting.Interface", "Engines\Operation\Accounting\Engine.Accounting.Interface\Engine.Accounting.Interface.csproj", "{731B74E5-7C1D-43E8-8016-A3CB8C68B4FD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F58FAAF6-CF45-4C0F-9955-3956ED1906A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F58FAAF6-CF45-4C0F-9955-3956ED1906A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F58FAAF6-CF45-4C0F-9955-3956ED1906A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F58FAAF6-CF45-4C0F-9955-3956ED1906A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{546E6C5A-21B7-4FCA-8EDF-F5950565737E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{546E6C5A-21B7-4FCA-8EDF-F5950565737E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{546E6C5A-21B7-4FCA-8EDF-F5950565737E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{546E6C5A-21B7-4FCA-8EDF-F5950565737E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C23AFAD-B6C2-4810-8C07-69962D74B210}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C23AFAD-B6C2-4810-8C07-69962D74B210}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C23AFAD-B6C2-4810-8C07-69962D74B210}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C23AFAD-B6C2-4810-8C07-69962D74B210}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28039454-9932-451C-BA87-00EEE3AB66CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28039454-9932-451C-BA87-00EEE3AB66CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28039454-9932-451C-BA87-00EEE3AB66CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28039454-9932-451C-BA87-00EEE3AB66CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D978891A-DF49-41E7-A5C4-AD2196EA10D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D978891A-DF49-41E7-A5C4-AD2196EA10D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D978891A-DF49-41E7-A5C4-AD2196EA10D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D978891A-DF49-41E7-A5C4-AD2196EA10D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42A57455-5F66-44F2-90A5-49194FAF2C0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42A57455-5F66-44F2-90A5-49194FAF2C0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42A57455-5F66-44F2-90A5-49194FAF2C0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42A57455-5F66-44F2-90A5-49194FAF2C0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{731B74E5-7C1D-43E8-8016-A3CB8C68B4FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{731B74E5-7C1D-43E8-8016-A3CB8C68B4FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{731B74E5-7C1D-43E8-8016-A3CB8C68B4FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{731B74E5-7C1D-43E8-8016-A3CB8C68B4FD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{546E6C5A-21B7-4FCA-8EDF-F5950565737E} = {C572C02F-4459-4DD3-9103-C1E447E03994}
+		{70E7A981-783C-4D3F-B2DA-7A5F389042B6} = {49DC1522-87F9-4342-86C3-F56E2B296D4B}
+		{A318BBC4-0768-496C-B02E-99AA73084AAC} = {49DC1522-87F9-4342-86C3-F56E2B296D4B}
+		{28039454-9932-451C-BA87-00EEE3AB66CD} = {49DC1522-87F9-4342-86C3-F56E2B296D4B}
+		{D978891A-DF49-41E7-A5C4-AD2196EA10D3} = {49DC1522-87F9-4342-86C3-F56E2B296D4B}
+		{18515F26-5D14-4381-85A9-C4285AFDCE76} = {A318BBC4-0768-496C-B02E-99AA73084AAC}
+		{42A57455-5F66-44F2-90A5-49194FAF2C0D} = {18515F26-5D14-4381-85A9-C4285AFDCE76}
+		{731B74E5-7C1D-43E8-8016-A3CB8C68B4FD} = {18515F26-5D14-4381-85A9-C4285AFDCE76}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {28C34CEF-E41A-44F9-92C9-1AD362825AC3}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 8
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://ntfox.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = Core\\Common\\Common.csproj
+		SccProjectTopLevelParentUniqueName1 = Zood\u0020Site.sln
+		SccProjectName1 = Core/Common
+		SccLocalPath1 = Core\\Common
+		SccProjectUniqueName2 = Global\\Global.csproj
+		SccProjectName2 = Global
+		SccLocalPath2 = Global
+		SccProjectUniqueName3 = Interface\\Interface.csproj
+		SccProjectName3 = Interface
+		SccLocalPath3 = Interface
+		SccProjectUniqueName4 = Engines\\Engine.Common\\Engine.Common.csproj
+		SccProjectTopLevelParentUniqueName4 = Zood\u0020Site.sln
+		SccProjectName4 = Engines/Engine.Common
+		SccLocalPath4 = Engines\\Engine.Common
+		SccProjectUniqueName5 = Engines\\Template\\Template.csproj
+		SccProjectTopLevelParentUniqueName5 = Zood\u0020Site.sln
+		SccProjectName5 = Engines/Template
+		SccLocalPath5 = Engines\\Template
+		SccProjectUniqueName6 = Engines\\Operation\\Accounting\\Engine.Accounting\\Engine.Accounting.csproj
+		SccProjectTopLevelParentUniqueName6 = Zood\u0020Site.sln
+		SccProjectName6 = Engines/Operation/Accounting/Engine.Accounting
+		SccLocalPath6 = Engines\\Operation\\Accounting\\Engine.Accounting
+		SccProjectUniqueName7 = Engines\\Operation\\Accounting\\Engine.Accounting.Interface\\Engine.Accounting.Interface.csproj
+		SccProjectTopLevelParentUniqueName7 = Zood\u0020Site.sln
+		SccProjectName7 = Engines/Operation/Accounting/Engine.Accounting.Interface
+		SccLocalPath7 = Engines\\Operation\\Accounting\\Engine.Accounting.Interface
+	EndGlobalSection
+EndGlobal
