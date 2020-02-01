@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interface", "Interface\Interface.csproj", "{F58FAAF6-CF45-4C0F-9955-3956ED1906A9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Interface", "Interface\Interface.csproj", "{F58FAAF6-CF45-4C0F-9955-3956ED1906A9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{C572C02F-4459-4DD3-9103-C1E447E03994}"
 EndProject
@@ -77,37 +77,5 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {28C34CEF-E41A-44F9-92C9-1AD362825AC3}
-	EndGlobalSection
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 8
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://ntfox.visualstudio.com/
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = Core\\Common\\Common.csproj
-		SccProjectTopLevelParentUniqueName1 = Zood\u0020Site.sln
-		SccProjectName1 = Core/Common
-		SccLocalPath1 = Core\\Common
-		SccProjectUniqueName2 = Global\\Global.csproj
-		SccProjectName2 = Global
-		SccLocalPath2 = Global
-		SccProjectUniqueName3 = Interface\\Interface.csproj
-		SccProjectName3 = Interface
-		SccLocalPath3 = Interface
-		SccProjectUniqueName4 = Engines\\Engine.Common\\Engine.Common.csproj
-		SccProjectTopLevelParentUniqueName4 = Zood\u0020Site.sln
-		SccProjectName4 = Engines/Engine.Common
-		SccLocalPath4 = Engines\\Engine.Common
-		SccProjectUniqueName5 = Engines\\Template\\Template.csproj
-		SccProjectTopLevelParentUniqueName5 = Zood\u0020Site.sln
-		SccProjectName5 = Engines/Template
-		SccLocalPath5 = Engines\\Template
-		SccProjectUniqueName6 = Engines\\Operation\\Accounting\\Engine.Accounting\\Engine.Accounting.csproj
-		SccProjectTopLevelParentUniqueName6 = Zood\u0020Site.sln
-		SccProjectName6 = Engines/Operation/Accounting/Engine.Accounting
-		SccLocalPath6 = Engines\\Operation\\Accounting\\Engine.Accounting
-		SccProjectUniqueName7 = Engines\\Operation\\Accounting\\Engine.Accounting.Interface\\Engine.Accounting.Interface.csproj
-		SccProjectTopLevelParentUniqueName7 = Zood\u0020Site.sln
-		SccProjectName7 = Engines/Operation/Accounting/Engine.Accounting.Interface
-		SccLocalPath7 = Engines\\Operation\\Accounting\\Engine.Accounting.Interface
 	EndGlobalSection
 EndGlobal
