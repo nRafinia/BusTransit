@@ -6,6 +6,7 @@ In progress...
 Send request to bus and wait to response very easy
 
 RPC Transmitter:
+
     public interface ITestClass
     {
         Task<string> Test(string a);
@@ -21,8 +22,8 @@ RPC Transmitter:
         }
 
         public async Task Test2()
-        {
-            
+        { 
+        
         }
 
         public string Test3()
@@ -32,11 +33,16 @@ RPC Transmitter:
 
     }
 
-    var appSetting = IoC.Resolve<IAppSetting>();
-    var test = RPCTransmitter<ITestClass>.Register(appSetting.GetSetting("RPCTestClass"));
-    container.Register(Component.For<ITestClass>().Instance(test).LifestyleSingleton());
-
-
+    public class TemplateInstaller : IIoCInstaller
+    {
+        public void Install(WindsorContainer container, IMapper mapper)
+        {
+            var appSetting = IoC.Resolve<IAppSetting>();
+            var test = RPCTransmitter<ITestClass>.Register(appSetting.GetSetting("RPCTestClass"));
+            container.Register(Component.For<ITestClass>().Instance(test).LifestyleSingleton());        
+        }
+    }
+    
     public class HomeController : Controller
     {
         private readonly ITestClass _testClass;
