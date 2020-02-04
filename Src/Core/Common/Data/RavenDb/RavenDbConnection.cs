@@ -5,20 +5,24 @@ namespace Common.Data.RavenDb
 {
     public class RavenDbConnection : IRavenDbConnection
     {
-        public IDocumentStore Connection { get; }
+        private static IDocumentStore _connection = null;
+        public IDocumentStore Connection => _connection;
 
         public RavenDbConnection(IAppSetting appSetting)
         {
-            var config = appSetting.Get<DBConnectionModel>("DbConnection");
+            if (_connection != null)
+                return;
 
-            Connection = new DocumentStore()
+            var config = appSetting.Get<RavenDbConnectionModel>("DbConnection");
+
+            _connection = new DocumentStore()
             {
-                Urls = config.Servers ,
+                Urls = config.Servers,
                 Database = config.Database,
                 Conventions = { }
             };
 
-            Connection.Initialize();
+            _connection.Initialize();
         }
 
         public void Dispose()

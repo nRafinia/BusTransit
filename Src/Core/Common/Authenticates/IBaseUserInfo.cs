@@ -5,7 +5,7 @@
         /// <summary>
         /// کد کاربر
         /// </summary>
-        string Id { get; set; }
+        object Id { get; set; }
 
         /// <summary>
         /// نام کاربر

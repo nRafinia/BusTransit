@@ -43,7 +43,7 @@ namespace Engine.Accounting.Providers
             if (res.Item1 == 0)
             {
                 user = res.Item2.MapTo<BaseUserInfo>();
-                await _cacheMemory.Set(user.Id, user);
+                await _cacheMemory.Set(user.Id.ToString(), user);
             }
 
             return new RegisterUserResponse()
@@ -65,7 +65,7 @@ namespace Engine.Accounting.Providers
                     return (-1, null);
                 }
 
-                var u = await db.Add(new User()
+                var u = new User()
                 {
                     Id = string.Empty,
                     UserName = data.UserName.ToLower(),
@@ -74,7 +74,8 @@ namespace Engine.Accounting.Providers
                     LastName = data.LastName,
                     Email = data.EMail,
                     Status = status,
-                });
+                };
+                await db.Add(u);
                 await db.SaveChanges();
 
                 return (0, u.MapTo<UserInfo>());
@@ -162,31 +163,33 @@ namespace Engine.Accounting.Providers
                     };
                 }
 
-                var cachedUser = await _cacheMemory.Get<BaseUserInfo>(user.Id, Provider.Globals);
+                var cachedUser = await _cacheMemory.Get<BaseUserInfo>(user.Id.ToString(), Provider.Globals);
                 if (cachedUser == null)
                 {
-                    await _cacheMemory.Set(user.Id, user.MapTo<BaseUserInfo>(), provider: Provider.Globals);
+                    await _cacheMemory.Set(user.Id.ToString(), user.MapTo<BaseUserInfo>(), provider: Provider.Globals);
                 }
 
-                var tokenE = await db.Add(new UserToken()
+                var tokenE = new UserToken()
                 {
                     Id = string.Empty,
-                    UserId = user.Id,
+                    UserId = user.Id.ToString(),
                     ExpireDate = DateTime.Now.AddMonths(6),
                     Expired = false
-                });
+                };
+
+                await db.Add(tokenE);
 
                 await db.SaveChanges();
 
                 var token = _authenticateUtil.CreateToken(new UserTokenModel()
                 {
-                    TokenId = tokenE.Id,
+                    TokenId = tokenE.Id.ToString(),
                     UserId = tokenE.UserId,
                     ExpireDate = tokenE.ExpireDate,
                     IsTemp = !request.RememberMe
                 });
 
-                await _cacheMemory.Set(tokenE.Id, user.MapTo<BaseUserInfo>(), provider: Provider.Globals);
+                await _cacheMemory.Set(tokenE.Id.ToString(), user.MapTo<BaseUserInfo>(), provider: Provider.Globals);
 
                 return new LoginResponse()
                 {
@@ -216,26 +219,24 @@ namespace Engine.Accounting.Providers
                 };
             }
 
-            using (var db = IoC.Resolve<IRepository>())
+            using var db = IoC.Resolve<IRepository>();
+            var r = await db.Get<UserToken, User>(id, t => t.UserId, u => u.User);
+            if (r == null)
             {
-                var r = await db.Get<UserToken, User>(id, t => t.UserId, u => u.User);
-                if (r == null)
-                {
-                    return new UserInfoResponse()
-                    {
-                        Status = -2
-                    };
-                }
-
-                var user = r.User.MapTo<BaseUserInfo>();
-                await _cacheMemory.Set(id, user, provider: Provider.Globals);
-
                 return new UserInfoResponse()
                 {
-                    Status = 0,
-                    UserInfo = user
+                    Status = -2
                 };
             }
+
+            var user = r.User.MapTo<BaseUserInfo>();
+            await _cacheMemory.Set(id, user, provider: Provider.Globals);
+
+            return new UserInfoResponse()
+            {
+                Status = 0,
+                UserInfo = user
+            };
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using System.Threading;
 using System.Threading.Tasks;
 using Common.Containers;
 
@@ -16,10 +17,12 @@ namespace Common.Data
         /// Returns the T by its given id.
         /// </summary>
         /// <param name="id">The Id of the entity to retrieve.</param>
+        /// <param name="cancellationToken"></param>
         /// <returns>The Entity T.</returns>
-        Task<T> Get<T>(string id) where T : DbEntity;
+        Task<T> Get<T>(object id, CancellationToken cancellationToken = default) where T : DbEntity;
 
-        Task<IEnumerable<T>> Get<T>(IEnumerable<string> ids) where T : DbEntity;
+        Task<IEnumerable<T>> Get<T>(IEnumerable<object> ids, CancellationToken cancellationToken = default)
+            where T : DbEntity;
 
         /// <summary>
         /// Get document by id and include related document
@@ -29,22 +32,13 @@ namespace Common.Data
         /// <param name="id">Id of document</param>
         /// <param name="field">Field with have related document id</param>
         /// <param name="targetField">Target field for set related document</param>
+        /// <param name="cancellationToken"></param>
         /// <returns>T</returns>
-        Task<T> Get<T, TIncType>(string id, Expression<Func<T, string>> field,
-            Expression<Func<T, TIncType>> targetField) where T : DbEntity;
+        public Task<T> Get<T, TIncType>(object id, Expression<Func<T, string>> field,
+            Expression<Func<T, TIncType>> targetField, CancellationToken cancellationToken = default)
+            where T : DbEntity
+            where TIncType : DbEntity;
 
-        /// <summary>
-        /// Get document by id and include related documents
-        /// </summary>
-        /// <typeparam name="T">Type of document</typeparam>
-        /// <typeparam name="TIncType">Type of list of included document</typeparam>
-        /// <param name="id">Id of document</param>
-        /// <param name="field">Field with have list of related document id</param>
-        /// <param name="targetField">Target field for set related document</param>
-        /// <returns>T</returns>
-        Task<T> Get<T, TIncType>(string id, Expression<Func<T, IEnumerable<string>>> field,
-            Expression<Func<T, IEnumerable<TIncType>>> targetField) where T : DbEntity;
-        
         /// <summary>
         /// Get document by id and include related documents
         /// </summary>
@@ -56,10 +50,14 @@ namespace Common.Data
         /// <param name="targetField1">Target field 1 for set related document</param>
         /// <param name="field2">Field 2 with have related document id</param>
         /// <param name="targetField2">Target field 2 for set related document</param>
+        /// <param name="cancellationToken"></param>
         /// <returns>T</returns>
-        Task<T> Get<T, TIncType1, TIncType2>(string id, Expression<Func<T, string>> field1,
+        public Task<T> Get<T, TIncType1, TIncType2>(string id, Expression<Func<T, string>> field1,
             Expression<Func<T, TIncType1>> targetField1, Expression<Func<T, string>> field2,
-            Expression<Func<T, TIncType2>> targetField2) where T : DbEntity;
+            Expression<Func<T, TIncType2>> targetField2, CancellationToken cancellationToken = default)
+            where T : DbEntity
+            where TIncType1 : DbEntity
+            where TIncType2 : DbEntity;
 
         #endregion
 
@@ -70,8 +68,9 @@ namespace Common.Data
         /// Adds the new entity in the repository.
         /// </summary>
         /// <param name="entity">The entity T.</param>
+        /// <param name="cancellationToken"></param>
         /// <returns>The added entity including its new ObjectId.</returns>
-        Task<T> Add<T>(T entity) where T : DbEntity;
+        Task Add<T>(T entity, CancellationToken cancellationToken = default) where T : DbEntity;
 
         /// <summary>
         /// Bulk add document
@@ -90,8 +89,9 @@ namespace Common.Data
         /// Upserts an entity.
         /// </summary>
         /// <param name="entity">The entity.</param>
+        /// <param name="cancellationToken"></param>
         /// <returns>The updated entity.</returns>
-        Task<T> Update<T>(T entity) where T : DbEntity;
+        Task Update<T>(T entity, CancellationToken cancellationToken = default) where T : DbEntity;
 
         /// <summary>
         /// Bulk update document
@@ -102,11 +102,12 @@ namespace Common.Data
         /// <returns>Task</returns>        
         Task Update<T>(IEnumerable<T> entities) where T : DbEntity;
 
-        Task<bool> Update<T,TField>(T entity, Expression<Func<T, TField>> field, TField value) where T : DbEntity;
+        Task Update<T, TField>(T entity, Expression<Func<T, TField>> field, TField value,
+            CancellationToken cancellationToken = default) where T : DbEntity;
 
-        Task<bool> Update<T,TField>(Expression<Func<T, bool>> filter,
-           Expression<Func<T, TField>> field, TField value) where T : DbEntity;
-
+        Task Update<T, TField>(Expression<Func<T, bool>> filter,
+            Expression<Func<T, TField>> field, TField value, CancellationToken cancellationToken = default)
+            where T : DbEntity;
 
         #endregion
 
@@ -116,40 +117,43 @@ namespace Common.Data
         /// Deletes an entity from the repository by its ObjectId.
         /// </summary>
         /// <param name="id">The ObjectId of the entity.</param>
-        void Delete<T>(string id) where T : DbEntity;
+        void Delete<T>(object id) where T : DbEntity;
 
         /// <summary>
         /// Deletes the given entity.
         /// </summary>
         /// <param name="entity">The entity to delete.</param>
-        void Delete<T>(T entity) where T : DbEntity;
+        /// <param name="cancellationToken"></param>
+        Task Delete<T>(T entity, CancellationToken cancellationToken = default) where T : DbEntity;
 
         /// <summary>
         /// Deletes the entities matching the predicate.
         /// </summary>
         /// <param name="filter">The expression.</param>
-        Task Delete<T>(Expression<Func<T, bool>> filter) where T : DbEntity;
+        /// <param name="cancellationToken"></param>
+        Task Delete<T>(Expression<Func<T, bool>> filter, CancellationToken cancellationToken = default)
+            where T : DbEntity;
 
         /// <summary>
         /// Deletes all entities in the repository.
         /// </summary>
-        Task DeleteAll<T>() where T : DbEntity;
+        Task DeleteAll<T>(CancellationToken cancellationToken = default) where T : DbEntity;
 
         #endregion
 
         #region Find
 
-        Task<IEnumerable<T>> Find<T>(Expression<Func<T, bool>> filter) where T : DbEntity;
+        Task<IEnumerable<T>> Find<T>(Expression<Func<T, bool>> filter, CancellationToken cancellationToken = default)
+            where T : DbEntity;
 
-        Task<IEnumerable<T>> Find<T>(Expression<Func<T, bool>> filter,
-           Expression<Func<T, object>> order,
-           int pageIndex, int size) where T : DbEntity;
+        Task<IEnumerable<T>> Find<T>(Expression<Func<T, bool>> filter, Expression<Func<T, object>> order, int pageIndex,
+            int size, CancellationToken cancellationToken = default) where T : DbEntity;
 
-        Task<IEnumerable<T>> Find<T>(Expression<Func<T, bool>> filter, int pageIndex, int size) where T : DbEntity;
+        Task<IEnumerable<T>> Find<T>(Expression<Func<T, bool>> filter, int pageIndex, int size, CancellationToken cancellationToken = default) where T : DbEntity;
 
-        Task<IEnumerable<T>> Find<T>(Expression<Func<T, bool>> filter,
-           Expression<Func<T, object>> order,
-           int pageIndex, int size, bool isDescending) where T : DbEntity;
+        Task<IEnumerable<T>> Find<T>(Expression<Func<T, bool>> filter, Expression<Func<T, object>> order, int pageIndex,
+            int size, bool isDescending, CancellationToken cancellationToken = default)
+            where T : DbEntity;
 
         #endregion
 
@@ -159,32 +163,37 @@ namespace Common.Data
         /// Counts the total entities in the repository.
         /// </summary>
         /// <returns>Count of entities in the collection.</returns>
-        Task<long> Count<T>() where T : DbEntity;
+        Task<long> Count<T>(CancellationToken cancellationToken = default) where T : DbEntity;
 
-        Task<long> Count<T>(Expression<Func<T, bool>> filter) where T : DbEntity;
+        Task<long> Count<T>(Expression<Func<T, bool>> filter, CancellationToken cancellationToken = default)
+            where T : DbEntity;
 
-        Task<bool> Any<T>() where T : DbEntity;
+        Task<bool> Any<T>(CancellationToken cancellationToken = default) where T : DbEntity;
 
         /// <summary>
         /// Checks if the entity exists for given predicate.
         /// </summary>
         /// <param name="filter">The expression.</param>
+        /// <param name="cancellationToken"></param>
         /// <returns>True when an entity matching the predicate exists, false otherwise.</returns>
-        Task<bool> Any<T>(Expression<Func<T, bool>> filter) where T : DbEntity;
+        Task<bool> Any<T>(Expression<Func<T, bool>> filter, CancellationToken cancellationToken = default)
+            where T : DbEntity;
 
         #endregion
 
         #region Max/Min
 
-        Task<T> Max<T>(Expression<Func<T, bool>> filter, Expression<Func<T, object>> field) where T : DbEntity;
+        Task<T> Max<T>(Expression<Func<T, bool>> filter, Expression<Func<T, object>> field,
+            CancellationToken cancellationToken = default) where T : DbEntity;
 
-        Task<T> Max<T>(Expression<Func<T, object>> field) where T : DbEntity;
+        Task<T> Max<T>(Expression<Func<T, object>> field, CancellationToken token = default) where T : DbEntity;
 
-        Task<T> Min<T>(Expression<Func<T, bool>> filter, Expression<Func<T, object>> field) where T : DbEntity;
+        Task<T> Min<T>(Expression<Func<T, bool>> filter, Expression<Func<T, object>> field,
+            CancellationToken cancellationToken = default) where T : DbEntity;
 
-        Task<T> Min<T>(Expression<Func<T, object>> field) where T : DbEntity;
+        Task<T> Min<T>(Expression<Func<T, object>> field, CancellationToken cancellationToken = default)
+            where T : DbEntity;
 
         #endregion
-
     }
 }

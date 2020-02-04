@@ -4,7 +4,7 @@ using Raven.Client.Documents;
 
 namespace Common.Data
 {
-    public interface IBaseDbConnection<out T> : ISingleton//, IDisposable
+    public interface IBaseDbConnection<out T> : ITransient//, IDisposable
     {
         T Connection { get; }
     }
