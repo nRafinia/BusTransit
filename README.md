@@ -22,15 +22,13 @@ RPC Transmitter:
         }
 
         public async Task Test2()
-        { 
-        
+        {        
         }
 
         public string Test3()
         {
             return new Random().Next(1000).ToString();
         }
-
     }
 
     public class TemplateInstaller : IIoCInstaller
