@@ -1,7 +1,7 @@
 # BusTransit
 Distributed Application Framework for .NET Core
 
-In progress...
+Readme In progress...
 
 Send request to bus and wait to response very easy
 
@@ -50,7 +50,7 @@ RPC Transmitter:
             _testClass = IoC.Resolve<ITestClass>();
         }
 
-        public async Task<string> Alaki([QFromHeader] string accept)
+        public async Task<string> Index()
         {
             var a = await _testClass.Test("test: ");
             await _testClass.Test2();
