@@ -7,7 +7,7 @@ using Common.Containers;
 
 namespace Common.Data
 {
-    public interface IRepository : ITransient, IDisposable
+    public interface IRepository : IDisposable
     {
         Task SaveChanges();
 
@@ -183,7 +183,7 @@ namespace Common.Data
 
         #region Max/Min
 
-        Task<T> Max<T>(Expression<Func<T, bool>> filter, Expression<Func<T, object>> field,
+        /*Task<T> Max<T>(Expression<Func<T, bool>> filter, Expression<Func<T, object>> field,
             CancellationToken cancellationToken = default) where T : DbEntity;
 
         Task<T> Max<T>(Expression<Func<T, object>> field, CancellationToken token = default) where T : DbEntity;
@@ -192,7 +192,7 @@ namespace Common.Data
             CancellationToken cancellationToken = default) where T : DbEntity;
 
         Task<T> Min<T>(Expression<Func<T, object>> field, CancellationToken cancellationToken = default)
-            where T : DbEntity;
+            where T : DbEntity;*/
 
         #endregion
     }

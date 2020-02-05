@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Common.Data.Dapper
 {
-    public class DapperConnectionModel
+    public class DapperConnectionConfig: DbConnectionModel
     {
         public string ConnectionString { get; set; }
     }

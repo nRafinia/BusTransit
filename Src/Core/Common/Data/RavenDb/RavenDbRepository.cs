@@ -166,7 +166,6 @@ namespace Common.Data.RavenDb
             where T : DbEntity
         {
             entity.SetPropertyValue(field, value);
-            entity.SetPropertyValue(f => f.ModifiedOn, DateTime.Now);
             return Update(entity, cancellationToken);
         }
 
@@ -179,7 +178,6 @@ namespace Common.Data.RavenDb
             foreach (var item in items)
             {
                 item.SetPropertyValue(field, value);
-                item.SetPropertyValue(f => f.ModifiedOn, DateTime.Now);
             }
 
             await Update(items);

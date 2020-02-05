@@ -51,7 +51,11 @@ namespace Common.Tools
 
         public string Get(string section, bool forceUpdate = false)
         {
-            var res = GetCacheItem<string>(section);
+            var res = string.Empty;
+            if (!forceUpdate)
+            {
+                res = GetCacheItem<string>(section);
+            }
 
             if (!forceUpdate && !string.IsNullOrWhiteSpace(res))
                 return res;
@@ -79,7 +83,11 @@ namespace Common.Tools
 
         public T Get<T>(string section, bool forceUpdate = false)
         {
-            var res = GetCacheItem<T>(section);
+            T res = default;
+            if (!forceUpdate)
+            {
+                res = GetCacheItem<T>(section);
+            }
 
             if (!forceUpdate && res != null)
                 return res;

@@ -27,7 +27,14 @@ namespace Common.Data.Dapper
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            if (_transaction != null)
+            {
+                RollbackTransaction();
+            }
+
+            if (_connection?.State != ConnectionState.Closed) 
+                _connection?.Close();
+            _connection?.Dispose();
         }
 
         public async Task SaveChanges()
@@ -49,6 +56,8 @@ namespace Common.Data.Dapper
 
             _transaction?.Commit();
             _transaction = null;
+
+            OpenTransaction();
         }
 
         private void RollbackTransaction()

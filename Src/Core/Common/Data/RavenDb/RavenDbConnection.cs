@@ -8,13 +8,14 @@ namespace Common.Data.RavenDb
         private static IDocumentStore _connection = null;
         public IDocumentStore Connection => _connection;
 
-        public RavenDbConnection(IAppSetting appSetting)
+        public RavenDbConnection(/*IAppSetting appSetting,*/ DbConnectionModel dbConnection)
         {
             if (_connection != null)
                 return;
 
-            var config = appSetting.Get<RavenDbConnectionModel>("DbConnection");
-
+            //var config = appSetting.Get<RavenDbConnectionConfig>("DbConnection");
+            var config = dbConnection as RavenDbConnectionConfig;
+            
             _connection = new DocumentStore()
             {
                 Urls = config.Servers,
