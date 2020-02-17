@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using F4ST.Queue.QMessageModels;
 
 namespace Common.QMessageModels.SendMessages
 {

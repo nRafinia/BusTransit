@@ -2,9 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Castle.MicroKernel.Registration;
 using Interface.Tools;
 using Common.Containers;
 using Common.Tools;
+using F4ST.Common.Containers;
+using F4ST.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -28,12 +31,13 @@ namespace Interface
         {
             services.AddControllersWithViews()
                 .AddNewtonsoftJson();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            IoC.Install(new CommonInstaller(), new UIInstaller());
+            IoC.Install();//new CommonInstaller(), new UIInstaller());
 
             if (env.IsDevelopment())
             {

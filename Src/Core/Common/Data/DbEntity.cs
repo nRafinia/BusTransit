@@ -1,12 +1,9 @@
-﻿using System;
+﻿using F4ST.Data.RavenDB;
 
 namespace Common.Data
 {
-    public class DbEntity : BaseEntity
+    public class DbEntity : RavenDbEntity
     {
-        /// <summary>
-        /// Id
-        /// </summary>
-        public object Id { get; set; }
+
     }
 }

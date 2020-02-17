@@ -1,6 +1,7 @@
 ﻿using Castle.Facilities.TypedFactory;
 using Castle.MicroKernel.Resolvers.SpecializedResolvers;
 using Castle.Windsor;
+using F4ST.Common.Containers;
 using Microsoft.Extensions.Hosting;
 
 namespace Common.Containers

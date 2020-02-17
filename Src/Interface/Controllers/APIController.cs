@@ -1,5 +1,4 @@
 ﻿using Common;
-using Common.QMessageModels.RequestMessages;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System;
@@ -16,6 +15,10 @@ using Common.QMessageModels;
 using Common.Tools;
 using Common.Transmitters;
 using Engine.Accounting;
+using F4ST.Common.Tools;
+using F4ST.Queue.QMessageModels;
+using F4ST.Queue.QMessageModels.RequestMessages;
+using F4ST.Queue.Transmitters;
 using Newtonsoft.Json;
 
 namespace Interface.Controllers
@@ -88,7 +91,7 @@ namespace Interface.Controllers
                 Body = bodyStr,
                 Lang = lang,
                 //Token = token,
-                TokenInfo = tokenInfo
+                //TokenInfo = tokenInfo
             };
             await base.OnActionExecutionAsync(context, next);
 
@@ -145,7 +148,7 @@ namespace Interface.Controllers
                 Body = bodyStr,
                 Lang = lang,
                 //Token = token,
-                TokenInfo = tokenInfo
+                //TokenInfo = tokenInfo
             };
         }
 
@@ -165,13 +168,13 @@ namespace Interface.Controllers
 
                 if (queue.MustAuthorize)
                 {
-                    if (!_sendingModel.IsAuthenticated || _sendingModel.TokenInfo.ExpireDate <= DateTime.Now)
+                    if (!_sendingModel.IsAuthenticated)
                     {
                         return StatusCode((int) GlobalStatusCode.AccessDenied,
                             GlobalStatusCode.AccessDenied.GetEnumName());
                     }
 
-                    var user = await _cacheMemory.Get<BaseUserInfo>(_sendingModel.TokenInfo.TokenId, Provider.Globals);
+                    /*var user = await _cacheMemory.Get<BaseUserInfo>(_sendingModel.TokenInfo.TokenId, Provider.Globals);
                     if (user == null)
                     {
                         var uInfo = await _authenticateService.Get(_sendingModel.TokenInfo.TokenId);
@@ -182,7 +185,7 @@ namespace Interface.Controllers
                     {
                         return StatusCode((int) GlobalStatusCode.AccessDenied,
                             GlobalStatusCode.AccessDenied.GetEnumName());
-                    }
+                    }*/
                 }
 
                 var res = await _transmitter.Request(queue, _sendingModel);

@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Common.Attributes;
-using Common.Containers;
-using Common.Receivers;
+using F4ST.Common.Containers;
+using F4ST.Queue.Receivers;
 using Template.Models;
 
 namespace Template.Controllers

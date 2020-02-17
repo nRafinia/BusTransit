@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Common.Attributes;
-using Common.QMessageModels;
-using Common.Receivers;
 using Common.Tools;
+using F4ST.Queue.Receivers;
 using Template.Models;
 
 namespace Template.Controllers

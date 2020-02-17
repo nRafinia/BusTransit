@@ -13,6 +13,7 @@
     <RootNamespace>Interface</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="f4st.common" Version="1.0.19" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.1" />
   </ItemGroup>
   <ItemGroup>
